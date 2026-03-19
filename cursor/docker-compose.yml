@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mqtt/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    networks:
+      - internal_net
+
+  backend:
+    build: .
+    container_name: go_backend
+    environment:
+      MQTT_BROKER_URL: tcp://mosquitto:1883
+      PORT: "8080"
+      DB_PATH: /data/iot.db
+    depends_on:
+      - mosquitto
+    ports:
+      - "8080:8080"
+    volumes:
+      - C:\workspace\proyecto_tamavans\data:/data
+    networks:
+      - internal_net
+
+networks:
+  internal_net:
+    driver: bridge
+
+volumes:
+  sqlite_data:

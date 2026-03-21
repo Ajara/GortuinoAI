@@ -1,7 +1,7 @@
 ﻿# GortuinoAI
 
 🤖 GortuinoAI: Intelligent IoT Monitoring & Actuation Ecosystem
-GortuinoAI is an end-to-end Full-Stack IoT solution designed for critical thermal monitoring and fluid control. It seamlessly integrates the high performance of Go, the hardware versatility of Arduino/ESP32, and a high-fidelity Flutter mobile interface.
+GortuinoAI is an end-to-end Full-Stack IoT solution designed for critical thermal monitoring and fluid control. It seamlessly integrates the high performance of Go, the hardware versatility of Arduino/ESP32, and a high-fidelity Flutter mobile interface. The code is 100% generate from AI Agents.
 
 The system is built with a focus on industrial safety, featuring automated valve shut-offs, dual battery telemetry, and robust JWT-based security.
 

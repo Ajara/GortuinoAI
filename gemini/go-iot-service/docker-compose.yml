@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Servicio de Mensajería MQTT
+  mqtt_broker:
+    image: eclipse-mosquitto:latest
+    container_name: iot_mqtt_broker
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: always
+
+  # Microservicio en Go
+  go_iot_app:
+    build: .
+    container_name: iot_go_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mqtt_broker
+    environment:
+      - GIN_MODE=release
+    volumes:
+      - ./data:/app/data  # Persistencia de la DB en subdirectorio
+    restart: always
+
+networks:
+  default:
+    name: iot_network

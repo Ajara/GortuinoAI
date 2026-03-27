@@ -5,6 +5,7 @@ class SensorData {
     required this.deposito,
     required this.ambiente2,
     required this.voltajeBat,
+    required this.voltajeBat2,
     required this.createdAt,
   });
 
@@ -13,6 +14,7 @@ class SensorData {
   final double? deposito;
   final double? ambiente2;
   final double? voltajeBat;
+  final double? voltajeBat2;
   final DateTime createdAt;
 
   factory SensorData.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class SensorData {
       deposito: _asDouble(json['deposito']),
       ambiente2: _asDouble(json['ambiente2']),
       voltajeBat: _asDouble(json['voltaje_bat'] ?? json['voltaje_bateria']),
+      voltajeBat2: _asDouble(json['voltaje_bat_2']),
       createdAt: DateTime.tryParse(json['created_at']?.toString() ?? '') ??
           DateTime.now(),
     );

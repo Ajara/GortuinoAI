@@ -57,6 +57,7 @@
 // =========================
 #define ONE_WIRE_BUS   4
 #define VOLTAGE_PIN    34
+#define VOLTAGE_PIN_2  35
 #define RELAY6_PIN     26
 #define RELAY7_PIN     27
 
@@ -164,6 +165,9 @@ void printAdcDiagnostics() {
   int raw = analogRead(VOLTAGE_PIN);
   float pinVoltage = (raw / ADC_RESOLUTION) * ADC_VREF;
   float batteryVoltage = pinVoltage * ((DIVIDER_R1 + DIVIDER_R2) / DIVIDER_R2);
+  int raw2 = analogRead(VOLTAGE_PIN_2);
+  float pinVoltage2 = (raw2 / ADC_RESOLUTION) * ADC_VREF;
+  float batteryVoltage2 = pinVoltage2 * ((DIVIDER_R1 + DIVIDER_R2) / DIVIDER_R2);
 
   Serial.print("ADC pin ");
   Serial.print(VOLTAGE_PIN);
@@ -173,6 +177,16 @@ void printAdcDiagnostics() {
   Serial.print(pinVoltage, 3);
   Serial.print(" V | Vbat estimada: ");
   Serial.print(batteryVoltage, 3);
+  Serial.println(" V");
+
+  Serial.print("ADC pin ");
+  Serial.print(VOLTAGE_PIN_2);
+  Serial.print(" crudo: ");
+  Serial.print(raw2);
+  Serial.print(" | Vpin: ");
+  Serial.print(pinVoltage2, 3);
+  Serial.print(" V | Vbat2 estimada: ");
+  Serial.print(batteryVoltage2, 3);
   Serial.println(" V");
 }
 
@@ -233,12 +247,12 @@ bool hasValidConfig() {
   return wifiSSID.length() > 0 && mqttBroker.length() > 0;
 }
 
-float readBatteryVoltage() {
+float readBatteryVoltage(uint8_t pin) {
   const int sampleCount = 10;
   uint32_t accumulator = 0;
 
   for (int i = 0; i < sampleCount; i++) {
-    accumulator += analogRead(VOLTAGE_PIN);
+    accumulator += analogRead(pin);
     delay(5);
   }
 
@@ -352,7 +366,8 @@ void publishSensorData() {
     }
   }
 
-  doc["voltaje_bateria"] = readBatteryVoltage();
+  doc["voltaje_bateria"] = readBatteryVoltage(VOLTAGE_PIN);
+  doc["voltaje_bat_2"] = readBatteryVoltage(VOLTAGE_PIN_2);
   doc["wifi_rssi"] = WiFi.RSSI();
   doc["ip"] = WiFi.localIP().toString();
   String timestamp = currentTimestampUtc();

@@ -173,6 +173,7 @@ func (m *Manager) handleSensorMessage(_ paho.Client, message paho.Message) {
 		Deposito:   payload.Temperaturas.Deposito,
 		Ambiente2:  payload.Temperaturas.Ambiente2,
 		VoltajeBat: payload.VoltajeBat,
+		VoltajeBat2: payload.VoltajeBat2,
 		CreatedAt:  createdAt,
 	}
 

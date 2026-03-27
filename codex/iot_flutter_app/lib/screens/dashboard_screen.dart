@@ -90,32 +90,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     SensorCard(
                       title: 'Exterior',
                       value: sensors?.exterior,
-                      unit: '°C',
+                      unit: 'C',
                       color: const Color(0xFF4FC3F7),
                     ),
                     SensorCard(
                       title: 'Interior',
                       value: sensors?.interior,
-                      unit: '°C',
+                      unit: 'C',
                       color: const Color(0xFFFF9800),
                     ),
                     SensorCard(
-                      title: 'Depósito',
+                      title: 'Deposito',
                       value: sensors?.deposito,
-                      unit: '°C',
+                      unit: 'C',
                       color: const Color(0xFFF44336),
                     ),
                     SensorCard(
                       title: 'Ambiente 2',
                       value: sensors?.ambiente2,
-                      unit: '°C',
+                      unit: 'C',
                       color: const Color(0xFF4CAF50),
                     ),
                     SensorCard(
-                      title: 'Voltaje batería',
+                      title: 'Voltaje bateria',
                       value: sensors?.voltajeBat,
                       unit: 'V',
                       color: const Color(0xFFAB47BC),
+                    ),
+                    SensorCard(
+                      title: 'Voltaje bateria 2',
+                      value: sensors?.voltajeBat2,
+                      unit: 'V',
+                      color: const Color(0xFFFDD835),
                     ),
                   ],
                 ),
@@ -128,7 +134,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   children: [
                     Expanded(
                       child: ValveButton(
-                        label: 'Válvula 1',
+                        label: 'Valvula 1',
                         isActive: system.activeValveId == 1,
                         isDisabled:
                             system.activeValveId != null && system.activeValveId != 1,
@@ -139,7 +145,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: ValveButton(
-                        label: 'Válvula 2',
+                        label: 'Valvula 2',
                         isActive: system.activeValveId == 2,
                         isDisabled:
                             system.activeValveId != null && system.activeValveId != 2,

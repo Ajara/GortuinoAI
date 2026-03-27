@@ -31,6 +31,7 @@ type SensorData struct {
 	Deposito   *float64  `json:"deposito"`
 	Ambiente2  *float64  `json:"ambiente2"`
 	VoltajeBat float64   `gorm:"column:voltaje_bat;not null" json:"voltaje_bat"`
+	VoltajeBat2 float64  `gorm:"column:voltaje_bat_2;not null" json:"voltaje_bat_2"`
 	CreatedAt  time.Time `gorm:"not null;index" json:"created_at"`
 }
 
@@ -41,6 +42,7 @@ type SensorPayload struct {
 		Deposito  *float64 `json:"deposito"`
 		Ambiente2 *float64 `json:"ambiente2"`
 	} `json:"temperaturas"`
-	VoltajeBat float64 `json:"voltaje_bateria"`
-	Timestamp  string  `json:"timestamp"`
+	VoltajeBat  float64 `json:"voltaje_bateria"`
+	VoltajeBat2 float64 `json:"voltaje_bat_2"`
+	Timestamp   string  `json:"timestamp"`
 }

@@ -1,0 +1,6 @@
+iot.db
+bin/
+tmp/
+.git
+.gitignore
+docker-compose*.yml

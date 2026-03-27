@@ -1,0 +1,40 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: iot-mqtt
+    restart: unless-stopped
+    environment:
+      MQTT_USERNAME: iot-user
+      MQTT_PASSWORD: iot-pass
+      MQTT_TLS_ENABLED: 0
+    command: sh /mosquitto/config/run-mosquitto.sh
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+    volumes:
+      - ./deploy/mosquitto:/mosquitto/config:ro
+      - ./deploy/mosquitto/certs:/mosquitto/certs:ro
+      - mosquitto_passwords:/mosquitto/password
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iot-backend
+    restart: unless-stopped
+    depends_on:
+      - mqtt
+    ports:
+      - "8080:8080"
+    environment:
+      DB_PATH: /data/iot.db
+      JWT_SECRET: change-this-in-production
+    volumes:
+      - ./data:/data
+
+volumes:
+  mosquitto_passwords:
+  mosquitto_data:
+  mosquitto_log:

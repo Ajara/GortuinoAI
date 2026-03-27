@@ -1,0 +1,16 @@
+# Runtime data
+data/
+*.db
+*.db-journal
+
+# MQTT runtime secrets generated locally
+deploy/mosquitto/password/*
+!deploy/mosquitto/password/.gitkeep
+
+# Build outputs
+bin/
+dist/
+
+# IDE
+.idea/
+.vscode/

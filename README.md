@@ -1,4 +1,26 @@
-﻿# GortuinoAI
+## 🧪 Origin: An AI Tools Benchmark
+
+This project was born as a **personal benchmark to evaluate the main AI code generation tools** available in 2025–2026: **GitHub Copilot, OpenAI Codex, Google Gemini, and Cursor**.
+
+### The methodology
+
+- **Same prompts, different tools**: The exact prompts used are documented in [`prompts.txt`](./prompts.txt).
+- **Deliberately unknown stack**: Go, Flutter, and ESP32/Arduino were chosen precisely because I had no prior experience with them — eliminating any personal bias in the evaluation.
+- **Production-grade target**: The goal wasn't a tutorial or a toy project. The prompts were designed to generate a real, secure, end-to-end system.
+
+### Key findings
+
+| Tool | Strength | Weakness |
+|------|----------|----------|
+| **Codex** | Best for complex, multi-layer generation from scratch | Less context-aware on iterative changes |
+| **Cursor** | Excellent for iterative development on existing code | Needs more guidance on initial architecture |
+| **Copilot** | Strong for isolated code fragments | Struggles with cross-layer coherence |
+| **Gemini** | Good for boilerplate and standard patterns | Less reliable on domain-specific logic |
+
+> **Conclusion**: No single tool wins across all scenarios. The quality of the prompt and the clarity of the architecture definition matter more than the tool itself.
+
+ 
+ # GortuinoAI
 
 🤖 GortuinoAI: Intelligent IoT Monitoring & Actuation Ecosystem
 GortuinoAI is an end-to-end Full-Stack IoT solution designed for critical thermal monitoring and fluid control. It seamlessly integrates the high performance of Go, the hardware versatility of Arduino/ESP32, and a high-fidelity Flutter mobile interface. The code is 100% generate from AI Agents.
